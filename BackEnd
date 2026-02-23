@@ -1,1 +1,31 @@
+const express = require("express");
+const cors = require("cors");
 
+const app = express();
+const PORT = 3000;
+
+app.use(cors());
+app.use(express.json());
+
+// Test route
+app.get("/", (req, res) => {
+    res.send("Server is running 🚀");
+});
+
+// API route
+app.get("/api/message", (req, res) => {
+    res.json({ message: "Hello from backend!" });
+});
+
+// POST route example
+app.post("/api/data", (req, res) => {
+    const userData = req.body;
+    res.json({
+        status: "Received",
+        data: userData
+    });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
